@@ -18,9 +18,9 @@ export const Card = () => {
     <ChakraProvider>
 
             <Box minHeight='100vh' backgroundColor='#9413DC' padding='25px'>
-
+                <Center>
                 <Box backgroundColor='#A020F0' borderRadius='25px' padding='15px' minHeight='100vh' color='#FFF'>
-
+                    
                     <Center>
 
                         <h1>Faça o login</h1>
@@ -38,7 +38,7 @@ export const Card = () => {
                     </Center>
 
                 </Box>
-
+                </Center>
             </Box>
 
         </ChakraProvider>
