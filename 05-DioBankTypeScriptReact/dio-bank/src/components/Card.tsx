@@ -9,13 +9,6 @@ import { login } from '../services/login';
 import { Header } from './Header/Header';
 import { Footer } from './Footer';
 
-interface ICard {
-    id: number,
-    paragrafo: string,
-    detalhes: string
-
-}
-
 
 export const Card = () => {
     return (
@@ -33,11 +26,11 @@ export const Card = () => {
                         <h1>Faça o login</h1>
 
                     </Center>
-
-                    <Input backgroundColor='#FFF' color='#000' marginBottom='5px' placeholder='email' type='email' />
+                    
+                    <Input backgroundColor='#FFF' color='#000' marginBottom='5px' marginTop='5px' placeholder='email' type='email' />
 
                     <Input backgroundColor='#FFF' color='#000' placeholder='password' type='password' />
-
+                   
                     <Center>
 
                         <Button onClick={login} colorScheme='teal' size='sm' width='100%' marginTop='10px'>Entrar</Button>
