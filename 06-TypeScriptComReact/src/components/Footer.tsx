@@ -7,13 +7,20 @@ import {
 
 export const Footer = () => {
     return (
+        
         <ChakraProvider>
-            <Box backgroundColor='#4B0082' padding='15px' color='#FFF' minHeight='5vh' maxHeight={'5vh'}>
-                <Center>
+
+            <Box backgroundColor='#4B0082' padding='15px' color='#FFF' maxHeight={'10vh'} minHeight={'10vh'}>
+                
+                <Center maxHeight={'5vh'} minHeight={'5vh'}>
+
                     Footer
+
                 </Center>
 
             </Box>
+
         </ChakraProvider>
+        
     )
 }

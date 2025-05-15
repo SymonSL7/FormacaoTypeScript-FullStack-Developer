@@ -6,31 +6,12 @@ import {
     Input
 } from '@chakra-ui/react'
 import { login } from '../services/login';
-import { useState, useEffect } from 'react';
-import { api } from '../api';
-
-interface UserData {
-    email: string;
-    password: string;
-    name: string;
-}
+import { useState } from 'react';
 
 export const Card = () => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [userData, setUserData] = useState<null | UserData>();
-
-    useEffect(() => {
-        const getData = async () => {
-            const data: any | UserData = await api
-            setUserData(data);
-        }
-
-        getData();
-    }, [])
-
-
 
     return (
 
@@ -38,17 +19,18 @@ export const Card = () => {
 
             <ChakraProvider>
 
-                <Box minHeight='90vh' maxHeight={'90vh'} backgroundColor='#9413DC' padding='25px'>
-
                     <Center>
-                        <Box backgroundColor='#A020F0' color='#FFF' borderRadius='25px' padding='15px'
-                            minHeight={'80vh'} maxHeight='90vh'>
 
+                        <Box backgroundColor='#A020F0' color='#FFF' borderRadius='25px' padding='15px'
+                            minHeight={'70vh'} maxHeight='80vh'>
+
+                            {/**     
                             <Center>
                                 {userData === null || userData === undefined ?
                                     <h1>Carregando...</h1> :
                                     <h1>Bem vindo ao DioBank</h1>}
                             </Center>
+                            */}
 
                             <Center>
 
@@ -56,10 +38,12 @@ export const Card = () => {
 
                             </Center>
 
+                            {/** 
                             <Center>
                                 <h2>{userData?.name}</h2>
                             </Center>
-
+                            */}
+                            
                             <Input
                                 backgroundColor='#FFF' color='#000'
                                 marginBottom='5px' marginTop='5px'
@@ -78,9 +62,9 @@ export const Card = () => {
                             </Center>
 
                         </Box>
+                        
                     </Center>
-                </Box>
-
+                
             </ChakraProvider>
 
         </>
