@@ -1,14 +1,18 @@
-import { Request, Response, Router } from "express";
-import { UserController } from "./controllers/UserController";
+// src/routes.ts
+import { Router } from 'express';
+import { UserController } from './controllers/UserController';
 
 export const router = Router();
-
 const userController = new UserController();
 
+router.post('/user', (request, response) => {
+     userController.createUser(request, response); 
+    });
 
-router.post('/user', userController.createUser);
-router.get('/user', userController.getAllUsers);
-router.delete('/user', (request: Request, response: Response) => {
-    const user = request.body
-    return response.status(200).json({message: 'Usuário deletado'})
-})
+router.get('/user', (request, response) => {
+     userController.getAllUsers(request, response); 
+    });
+    
+router.delete('/user', (request, response) => { 
+    userController.deleteUser(request, response); 
+});
