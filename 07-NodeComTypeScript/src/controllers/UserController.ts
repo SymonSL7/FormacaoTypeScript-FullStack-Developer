@@ -2,13 +2,10 @@ import { UserService } from '../services/UserService';
 import { Request, Response } from 'express';
 
 export class UserController {
-
     private userService: UserService;
 
-    constructor(
-        userService = new UserService()
-    ) {
-        this.userService = userService
+    constructor(userService = new UserService()) {
+        this.userService = userService;
     }
 
     createUser = (request: Request, response: Response): void => {
@@ -29,7 +26,14 @@ export class UserController {
     }
 
     deleteUser = (request: Request, response: Response): void => {
-        const user = request.body;
+        const { email } = request.body;
+
+        if (!email) {
+            response.status(400).json({ message: 'Bad Request! Email obrigatório!' });
+            return;
+        }
+
+        this.userService.deleteUser(email);
         response.status(200).json({ message: 'Usuário deletado' });
     }
 }
