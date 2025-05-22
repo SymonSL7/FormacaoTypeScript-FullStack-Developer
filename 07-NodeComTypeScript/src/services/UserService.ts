@@ -1,3 +1,8 @@
+export interface User {
+    name: string;
+    email: string;
+}
+
 const db = [
     {
         name: "Symon",
@@ -7,6 +12,14 @@ const db = [
 
 export class UserService {
 
+    db: User[]
+
+    constructor(
+        database = db
+    ){
+        this.db = database
+    }
+
     createUser = (name: string, email: string) => {
         
         const user = {
@@ -14,13 +27,13 @@ export class UserService {
             email
         }
 
-        db.push(user);
-        console.log('DB Atulizado', db);
+        this.db.push(user);
+        console.log('DB Atualizado', this.db);
         
     }
 
     getAllUsers = () => {
-        return db
+        return this.db
     }
 
 }

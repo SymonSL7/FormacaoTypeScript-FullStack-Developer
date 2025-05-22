@@ -1,12 +1,14 @@
-// src/controllers/UserController.ts
 import { UserService } from '../services/UserService';
 import { Request, Response } from 'express';
 
 export class UserController {
+
     private userService: UserService;
 
-    constructor() {
-        this.userService = new UserService();
+    constructor(
+        userService = new UserService()
+    ) {
+        this.userService = userService
     }
 
     createUser = (request: Request, response: Response): void => {
