@@ -36,4 +36,16 @@ describe('UserController', () => {
 
     })
 
+    it('Deve retornar todos os usuários', () => {
+        const mockRequest = {} as Request;
+    })
+
+    it('Deve deletar um usuário', () => {
+        const mockRequest = {
+            params: {
+                
+            }
+        } as Request;
+    })
+
 })
