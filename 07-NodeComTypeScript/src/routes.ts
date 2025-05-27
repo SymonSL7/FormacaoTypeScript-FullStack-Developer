@@ -10,7 +10,7 @@ router.post('/user', (request, response) => {
     });
 
 router.get('/user', (request, response) => {
-     userController.getAllUsers(request, response); 
+     userController.getUser(request, response); 
     });
     
 router.delete('/user', (request, response) => { 

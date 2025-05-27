@@ -1,39 +1,43 @@
-import { User, UserService } from "./UserService"
+import { User } from "../entities/User";
+import { UserService } from "./UserService";
+
+jest.mock('../repositories/UserRepository');
+jest.mock('../database', () => {
+    initialize: jest.fn()
+});
+
+const mockUserRepository = require('../repositories/UserRepository');
+
 
 describe('UserService', () => {
     
-    const mockDb: User[] = [];
+    const userService = new UserService(mockUserRepository);
 
-    const userService = new UserService(mockDb);
+    it('Deve adicionar um novo usuário', async () => {
 
-    it('Deve adicionar um novo usuário', () => {
+        mockUserRepository.createUser = jest.fn().mockImplementation(() => Promise.resolve({
 
-        const mockConsole = jest.spyOn(global.console, 'log');
+            id_user: '123',
+            name: 'Pedro',
+            email: 'pedro@diobank.com',
+            password: '123456'
 
-        userService.createUser('Pedro', 'pedro@diobank.com');
+        }));
 
-        expect(mockConsole).toHaveBeenCalledWith('DB Atualizado', mockDb);
+        const response =await userService.createUser('Pedro', 'pedro@diobank.com', '123456');
 
-    })
+        expect(mockUserRepository.createUser).toHaveBeenCalled();
 
-    it('Deve retornar todos os usuários', () => {
+        expect(response).toMatchObject({
 
-        const mockConsole = jest.spyOn(global.console, 'log');
+            id_user: '123',
+            name: 'Pedro',
+            email: 'pedro@diobank.com',
+            password: '123456'
 
-        userService.getAllUsers();
-
-        expect(mockConsole).toHaveBeenCalledWith('DB Atual', mockDb);
-
-    })
-
-    it('Deve deletar um usuário', () => {
-
-        const mockConsole = jest.spyOn(global.console, 'log');
-
-        userService.deleteUser('pedro@diobank.com');
-
-        expect(mockConsole).toHaveBeenCalledWith('DB Atualizado', mockDb);
+        })
 
     })
+
 
 })
