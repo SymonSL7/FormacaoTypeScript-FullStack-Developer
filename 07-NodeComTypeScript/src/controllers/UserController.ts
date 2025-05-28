@@ -24,9 +24,16 @@ export class UserController {
 
     }
 
-    getUser = (request: Request, response: Response): void => {
+    getUser = async (request: Request, response: Response) => {
+
+        const { userId } = request.params;
+        const user = await this.userService.getUser(userId);
         
-        response.status(200);
+        response.status(200).json( {
+            userId: user?.id_user,
+            name: user?.name,
+            email: user?.email
+        } );
 
     }
 
